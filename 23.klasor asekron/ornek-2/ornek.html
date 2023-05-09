@@ -14,13 +14,26 @@
 <body>
     <div class="container">
         <hr>
-        <label for="amount">Euro</label>
-        <input type="number" id="amount" min="0">
+        <button id="ajax" class="btn btn-danger">Çalışanları Getir</button>
         <hr>
-        <button id="change" class="btn btn-danger">Çevir</button>
-        <hr>
-        <label for="tl">TL</label>
-        <input type="text" id="tl" readonly>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">İsim</th>
+                    <th scope="col">Departman</th>
+                    <th scope="col">Maaş</th>
+
+                </tr>
+            </thead>
+            <tbody id="employees">
+                <!-- <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr> -->
+
+            </tbody>
+        </table>
 
     </div>
 
