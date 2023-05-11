@@ -1,0 +1,20 @@
+[
+    {
+        "name": "alper",
+        "lastname": "kayabaşı",
+        "age": "15",
+        "salary": 2500
+    },
+    {
+        "name": "murat",
+        "lastname": "coşkun",
+        "age": "26",
+        "salary": 4500
+    },
+    {
+        "name": "arda",
+        "lastname": "özkurt",
+        "age": "15",
+        "salary": 2500
+    }
+]

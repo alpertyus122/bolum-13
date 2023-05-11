@@ -57,7 +57,7 @@ UI.prototype.loadAllFilms = function (films) {
 UI.prototype.dleteFilmFromUI = function (element) {
     element.parentElement.parentElement.remove()
 }
-UI.prototype.clearAllFilmsFromUI = function(){
+UI.prototype.clearAllFilmsFromUI = function () {
     const filmList = document.getElementById("films")
 
     while (filmList.firstElementChild !== null) {
