@@ -32,50 +32,50 @@ function clearalltodos(e) {
 
     }
 }
-// function filtertodos(e) {
-//     const filtervalue = e.target.value.toLowerCase()
-//     const listItems = document.querySelectorAll(".list-group-item")
+function filtertodos(e) {
+    const filtervalue = e.target.value.toLowerCase()
+    const listItems = document.querySelectorAll(".list-group-item")
 
-//     listItems.forEach(function (listItem) {
-//         const text = listItem.textContent.toLowerCase()
-//         if (text.indexOf(filtervalue) === -1) {
-//             //bulamadı
+    listItems.forEach(function (listItem) {
+        const text = listItem.textContent.toLowerCase()
+        if (text.indexOf(filtervalue) === -1) {
+            //bulamadı
 
-//             listItem.setAttribute("style", "display : none !important")
-//         }
-//         else {
-//             listItem.setAttribute("style", "display : block")
-//         }
+            listItem.setAttribute("style", "display : none !important")
+        }
+        else {
+            listItem.setAttribute("style", "display : block")
+        }
 
-//     })
+    })
 
 
 
-// }
-// function deletetodo(e) {
+}
+function deletetodo(e) {
 
-//     // console.log(e.target)
+    // console.log(e.target)
 
-//     if (e.target.className === "fa fa-remove") {
-//         // console.log("silme işlemi")
-//         e.target.parentElement.parentElement.remove()
-//         deletetodofromStorage(e.target.parentElement.parentElement.textContent)
-//         showAlert("success", "todo silindi")
-//     }
+    if (e.target.className === "fa fa-remove") {
+        // console.log("silme işlemi")
+        e.target.parentElement.parentElement.remove()
+        deletetodofromStorage(e.target.parentElement.parentElement.textContent)
+        showAlert("success", "todo silindi")
+    }
 
-// }
-// function deletetodofromStorage(deletetodo) {
-//     let todos = getTodosFromStorage()
+}
+function deletetodofromStorage(deletetodo) {
+    let todos = getTodosFromStorage()
 
-//     todos.forEach(function (todo, index) {
-//         if (todo === deletetodo) {
-//             todos.splice(index, 1)
-//         }
-//     })
+    todos.forEach(function (todo, index) {
+        if (todo === deletetodo) {
+            todos.splice(index, 1)
+        }
+    })
 
-//     localStorage.setItem("todos", JSON.stringify(todos))
+    localStorage.setItem("todos", JSON.stringify(todos))
 
-// }
+}
 function loadAllTodosTuUI() {
     let todos = getTodosFromStorage()
 
