@@ -63,28 +63,52 @@
 
 
 
+        // function toggleMessageDiv() {
+        //     const icon = document.querySelector('.bell');
+        //     const message = document.querySelector('.message');
+
+
+        //     icon.addEventListener("click", function () {
+        //         message.classList.add('display-b');
+        //     });
+
+
+        //     message.addEventListener('click', function (event) {
+        //         event.stopPropagation();
+        //     });
+
+
+        //     document.addEventListener('click', function (event) {
+
+        //         if (!event.target.closest('.bell') && !event.target.closest('.message')) {
+        //             message.classList.remove('display-b');
+        //         }
+        //     });
+        // }
+
         function toggleMessageDiv() {
             const icon = document.querySelector('.bell');
             const message = document.querySelector('.message');
 
-
-            icon.addEventListener("click", function () {
-                message.classList.add('display-b');
+            icon.addEventListener('click', function () {
+                if (message.classList.contains('display-b')) {
+                    message.classList.remove('display-b');
+                } else {
+                    message.classList.add('display-b');
+                }
             });
-
 
             message.addEventListener('click', function (event) {
                 event.stopPropagation();
             });
 
-
             document.addEventListener('click', function (event) {
-
                 if (!event.target.closest('.bell') && !event.target.closest('.message')) {
                     message.classList.remove('display-b');
                 }
             });
         }
+
 
     </script>
 

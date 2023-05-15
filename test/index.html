@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Form Verilerini JSON'a Dönüştürme</title>
+</head>
+
+<body>
+    <h1>Form Verilerini JSON'a Dönüştürme</h1>
+    <form id="myForm">
+        <label for="name">Adı:</label>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="lastname">Soyadı:</label>
+        <input type="text" id="lastname" name="lastname"><br>
+
+        <label for="age">Yaşı:</label>
+        <input type="text" id="age" name="age"><br>
+
+        <label for="salary">Maaşı:</label>
+        <input type="text" id="salary" name="salary"><br>
+
+        <button type="submit">Gönder</button>
+    </form>
+    <br>
+
+    <table id="myTable">
+        <thead>
+            <tr>
+                <th>Adı</th>
+                <th>Soyadı</th>
+                <th>Yaşı</th>
+                <th>Maaşı</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        // Form verilerini alalım
+        const form = document.getElementById("myForm");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // sayfa yenilemesini engelleme
+
+            // Formdan verileri alalım
+            const formData = new FormData(form);
+            const name = formData.get("name");
+            const lastname = formData.get("lastname");
+            const age = formData.get("age");
+            const salary = formData.get("salary");
+            if (name === "" || lastname === "" || age === "" || salary === "") {
+                alert("Lütfen tüm alanları doldurunuz!");
+
+            } else {
+                // Alınan verileri bir JavaScript nesnesi olarak düzenleyelim
+                const employee = {
+                    name,
+                    lastname,
+                    age,
+                    salary
+                };
+
+                // Verileri localStorage'a kaydetme
+                localStorage.setItem('employee', JSON.stringify(employee));
+
+                // Formu temizleme
+                form.reset();
+
+                // Sayfayı yenileme
+                location.reload();
+            }
+        });
+    </script>
+    <script>  fetch('employees.json')
+            .then(response => response.json())
+            .then(data => {
+                // Verileri döngü ile işleyelim ve tabloya ekleyelim
+                data.forEach(function (employees) {
+                    let newRow = document.createElement('tr');
+
+                    newRow.innerHTML = `<td>${employees.name}</td>
+                     <td>${employees.lastname}</td>
+                     <td>${employees.age}</td>
+                     <td>${employees.salary}</td>`;
+
+                    document.getElementById('myTable').appendChild(newRow);
+                });
+            })
+            .catch(error => console.error(error));</script>
+</body>
+
+</html>

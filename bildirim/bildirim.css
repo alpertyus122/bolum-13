@@ -13,6 +13,10 @@
 
 }
 
+.bell:hover {
+    cursor: pointer;
+}
+
 .bell-div {
     text-align: center;
     width: 20%;
@@ -83,5 +87,5 @@
 .display-b {
     /* display: block; */
     height: 200px;
-    top: 25px;
+    /* top: 25px; */
 }
