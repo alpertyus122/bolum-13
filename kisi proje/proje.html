@@ -87,8 +87,79 @@
         crossorigin="anonymous"></script>
 
     <script src="app.js"></script>
+    <!-- <script>
+        const formData = new FormData(form);
+        const name = formData.get("name");
+        const lastname = formData.get("lastname");
+        const age = formData.get("yas");
+        const salary = formData.get("maas");
 
-   
+
+
+
+
+
+
+
+        // employees.json dosyasındaki verileri localStorage'a kaydetme
+        fetch('employees.json')
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('employees', JSON.stringify(data));
+                updateTable(data); // Tabloyu güncelleme
+            })
+            .catch(error => console.error(error));
+
+        // Form submit edildiğinde çalışacak kodlar
+        // const form = document.getElementById("myForm");
+        form.addEventListener("submit", function (event) {
+            event.preventDefault(); // sayfa yenilemesini engelleme
+
+            // Formdan verileri alalım
+            const formData = new FormData(form);
+            const name = formData.get("name");
+            const lastname = formData.get("lastname");
+            const age = formData.get("age");
+            const salary = formData.get("salary");
+            if (name === "" || lastname === "" || age === "" || salary === "") {
+                alert("Lütfen tüm alanları doldurunuz!");
+            } else {
+                // Alınan verileri bir JavaScript nesnesi olarak düzenleyelim
+                const employee = {
+                    name,
+                    lastname,
+                    age,
+                    salary
+                };
+                // Yeni employee verisini localStorage'daki employees dizisine ekleyelim
+                const employees = JSON.parse(localStorage.getItem('employees'));
+                employees.push(employee);
+                localStorage.setItem('employees', JSON.stringify(employees));
+
+                // Formu temizleme
+                form.reset();
+
+                // Tabloyu güncelleme
+                updateTable(employees);
+            }
+        });
+
+        // employees dizisindeki verileri tabloya yazdırma
+        function updateTable(employees) {
+            const tableBody = document.querySelector("#kisiler");
+            tableBody.innerHTML = ""; // Tablo öğelerini temizleme
+            employees.forEach(function (employee) {
+                let newRow = document.createElement('tr');
+                newRow.innerHTML = `<td>${employee.name}</td>
+         <td>${employee.lastname}</td>
+         <td>${employee.age}</td>
+         <td>${employee.salary}</td>
+         <td><a href="#none" onclick="deleteRow(this)"><i class="fa-solid fa-xmark" style="font-size: 1.82rem; color: #ffffff;"></i></a></td>`;
+                tableBody.appendChild(newRow);
+            });
+        }
+    </script> -->
+
 
 </body>
 
