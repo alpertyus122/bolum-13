@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <select class="form-select" id="select">
+        <option value="1">il seçiniz</option>
+        <option value="2">istanbul</option>
+        <option value="3">ankara</option>
+        <option value="4">hatay</option>
+        <option value="5">antalya</option>
+    </select>
+    
+    <button class="btn btn-outline-warning" id="button"><i id="icon" class="fav fa-regular fa-star"></i></button>
+    
+    <script>
+        const select = document.getElementById("select");
+        const button = document.getElementById("button");
+        const text = document.getElementById("text");
+    
+        button.addEventListener("click", () => {
+            const selectedValue = select.value;
+            if (selectedValue !== "1") {
+                fetch(`http://api.weatherapi.com/v1/forecast.json?key=7645a6b184db4cdeb6f131246231605&q=${selectedValue}&days=7&aqi=yes&alerts=no`)
+                    .then(response => response.json())
+                    .then(data => {
+                        localStorage.setItem("weatherData", JSON.stringify(data.location.name));
+                        text.innerHTML = `
+                        <div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <td class="thead-tds">konum</td>
+                                        <td class="thead-tds">Tarih</td>
+                                        <td class="thead-tds">Derece(°C)</td>
+                                        <td class="thead-tds">hava durumu</td>
+                                        <td class="thead-tds">Nem(%)</td>
+                                        <td class="thead-tds">Rüzgar(km/s)</td>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-group-divider">
+                                    <tr>
+                                        <td>${data.location.name}</td>
+                                        <td>${data.forecast.forecastday[0].date}</td>
+                                        <td>${data.forecast.forecastday[0].day.maxtemp_c}</td>
+                                        <td>${data.forecast.forecastday[0].day.condition.text}</td>
+                                        <td>${data.forecast.forecastday[0].day.avghumidity}</td>
+                                        <td>${data.forecast.forecastday[0].day.maxwind_kph}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${data.location.name}</td>
+                                        <td>${data.forecast.forecastday[1].date}</td>
+                                        <td>${data.forecast.forecastday[1].day.maxtemp_c}</td>
+                                        <td>${data.forecast.forecastday[1].day.condition.text}</td>
+                                        <td>${data.forecast.forecastday[1].day.avghumidity}</td>
+                                        <td>${data.forecast.forecastday[1].day.maxwind_kph}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${data.location.name}</td>
+                                        <td>${data.forecast.forecastday[2].date}</td>
+                                        <td>${data.forecast.forecastday[2].day.maxtemp_c}</td>
+                                        <td>${data.forecast.forecastday[2].day.condition.text}</td>
+                                        <td>${data.forecast.forecastday[2].day.avghumidity}</td>
+                                        <td>${data.forecast.forecastday[2].day.maxwind_kph}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${data.location.name}</td>
+                                        <td>${data.forecast.forecastday[3].date}</td>
+                                        <td>${data.forecast.forecastday[3].day.maxtemp_c}</td>
+                                        <td>${data.forecast.forecastday[3].day.condition.text}</td>
+                                        <td>${data.forecast.forecastday[3].day.avghumidity}</td>
+                                        <td>${data.forecast.forecastday[3].day.maxwind_kph}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${data.location.name}</td>
+                                        <td>${data.forecast.forecastday[4].date}</td>
+                                        <td>${data.forecast.forecastday[4].day.maxtemp_c}</td>
+                                        <td>${data.forecast.forecastday[4].day.condition.text}</td>
+                                        <td>${data.forecast.forecastday[4].day.avghumidity}</td>
+                                        <td>${data.forecast.forecastday[4].day.maxwind_kph}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${data.location.name}</td>
+                                        <td>${data.forecast.forecastday[5].date}</td>
+                                        <td>${data.forecast.forecastday[5].day.maxtemp_c}</td>
+                                        <td>${data.forecast.forecastday[5].day.condition.text}</td>
+                                        <td>${data.forecast.forecastday[5].day.avghumidity}</td>
+                                        <td>${data.forecast.forecastday[5].day.maxwind_kph}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>${data.location.name}</td>
+                                        <td>${data.forecast.forecastday[6].date}</td>
+                                        <td>${data.forecast.forecastday[6].day.maxtemp_c}</td>
+                                        <td>${data.forecast.forecastday[6].day.condition.text}</td>
+                                        <td>${data.forecast.forecastday[6].day.avghumidity}</td>
+                                        <td>${data.forecast.forecastday[6].day.maxwind_kph}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        `;
+                    })
+                    .catch(err => console.log(err));
+            }
+        });
+    </script>
+    
+</body>
+</html>

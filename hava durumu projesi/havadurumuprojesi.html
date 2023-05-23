@@ -29,7 +29,8 @@
 
     <div class="container">
         <div class="col-md-2 input-group mb-3">
-            <button class="btn btn-outline-secondary" type="button" onclick="inputfunc()">seç</button>
+            <button id="favdiv" onclick="inputfunc()" class="btn btn-outline-secondary" type="button"
+                sonclick="favunlocker()">seç</button>
             <select class="form-select" id="select">
                 <option value="1">il seçiniz</option>
                 <option value="2">istanbul</option>
@@ -37,15 +38,36 @@
                 <option value="4">hatay</option>
                 <option value="5">antalya</option>
             </select>
-            <butto class=" btn btn-outline-warning " onclick="favori()" id="button"><i id="icon" class="fav fa-regular fa-star"></i></button>
+         
+
+
+
+
+
         </div>
         <div id="text" class="m-2">
 
         </div>
+        <div>
+            <h2>Seçilmiş olan favori illeri in tablosu</h2>
+            <p class="mini-text muted">daha hiçbir favori iller seçilmemiş</p>
+            <table id="weatherTable" class="table">
 
+            </table>
+        </div>
 
     </div>
     <script src="app.js"></script>
+    <script>
+        function favunlocker() {
+            var favbutton = document.getElementsByClassName("button")
+            favbutton.className("ds-block")
+
+        }
+
+
+    </script>
+
 </body>
 
 </html>

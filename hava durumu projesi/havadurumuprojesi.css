@@ -14,3 +14,14 @@
     background: white !important;
     border-color: #6C757D !important;
 }
+.ds-none {
+    display: none;
+  }
+  
+  .ds-block {
+    display: block;
+  }
+  
+.havadurumu{
+    text-align: center;
+}
