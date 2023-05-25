@@ -39,5 +39,8 @@
 }
 
 .ds-none {
-  display: none;
+  display: none ;
+}
+.dsi-none{
+  display: none !important;
 }

@@ -82,31 +82,8 @@ fetch("http://api.weatherapi.com/v1/forecast.json?key=7645a6b184db4cdeb6f1312462
 
 // icon değiştirme
 
-function favicon() {
-    var input = document.getElementById("select")
-    var inputvalue = input.value
-    if (inputvalue == 1) {
-        alert("lütfen bir il seçiniz")
-    } else {
-        // function fav() {
-        //     var element = document.getElementById("icon");
-        //     element.classList.toggle("fa-solid")
 
 
-        // }
-        // function favtext() {
-
-        // }
-
-        // favtext()
-    }
-}
-window.addEventListener('DOMContentLoaded', () => {
-    const favDeleteButton = document.querySelector("#favdelete")
-    if (!localStorage.getItem('weatherDataArray')) {
-        favDeleteButton.style.display = 'none';
-    }
-});
 
 // ${data.location.name},${data.forecast.forecastday[6].date},${data.forecast.forecastday[6].day.maxtemp_c},${data.forecast.forecastday[6].day.condition.text},${data.forecast.forecastday[6].day.avghumidity},${data.forecast.forecastday[6].day.maxwind_kph}
 
@@ -194,12 +171,8 @@ favButton.addEventListener("click", function () {
 });
 
 function displayWeatherData() {
-    // Clear previous table content
     weatherTable.innerHTML = '';
-
     favDeleteButton.style.display = 'block';
-
-    // Clear favinfo content
     const favInfo = document.getElementById('favinfo');
     favInfo.innerHTML = '';
 
@@ -207,9 +180,9 @@ function displayWeatherData() {
         const locationName = weatherData.location.name;
         const forecastDays = weatherData.forecast?.forecastday;
 
-        // Create table header for current location
         const tableHeader = document.createElement('thead');
         tableHeader.innerHTML = `
+        <button class="favdeletebtn" data-location="${locationName}" onclick="deleteLocation(event)"><i class="fav fa-solid fa-star"></i></button>
             <tr id="theadinfo">
                 <th class="havadurumu">Hava Durumu Görsel</th>
                 <th>Konum</th>
@@ -218,10 +191,10 @@ function displayWeatherData() {
                 <th>Hava Durumu</th>
                 <th>Nem(%)</th>
                 <th>Rüzgar(km/s)</th>
+                <th>İşlem</th>
             </tr>
         `;
 
-        // Create table body for current location
         const tableBody = document.createElement('tbody');
 
         forecastDays.forEach(day => {
@@ -234,27 +207,37 @@ function displayWeatherData() {
                 <td>${day.day.condition.text}</td>
                 <td>${day.day.avghumidity}</td>
                 <td>${day.day.maxwind_kph}</td>
+              
             `;
             tableBody.appendChild(tableRow);
         });
 
-        // Create table element for current location
         const locationTable = document.createElement('table');
-        locationTable.className = "w-100 my-5"
+        locationTable.className = "w-100 my-5";
         locationTable.appendChild(tableHeader);
         locationTable.appendChild(tableBody);
 
-        // Append the table to the weatherTable element
         weatherTable.appendChild(locationTable);
     });
 
-    // const favInfo = document.getElementById('favinfo');
     if (weatherDataArray.length === 0) {
         favInfo.innerHTML = '<p id="favinfo" class="mini-text muted">Daha hiçbir favori iller seçilmemiş</p>';
     } else {
         favInfo.innerHTML = '';
     }
+}
 
+function deleteLocation(event) {
+    const locationName = event.target.dataset.location;
+
+    weatherDataArray = weatherDataArray.filter(item => item.location?.name !== locationName);
+    localStorage.setItem('weatherDataArray', JSON.stringify(weatherDataArray));
+
+    displayWeatherData();
+
+    if (!localStorage.getItem('weatherDataArray')) {
+        favDeleteButton.style.display = 'none';
+    }
 }
 
 
